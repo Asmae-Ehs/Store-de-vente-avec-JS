@@ -162,4 +162,4 @@ const products = [
         description: "Collier papillon en or, pendentif délicat, superposition de bijoux"
     }
 ];
-export { products };  // ⚠️ Cette ligne est obligatoire !
+export { products };  

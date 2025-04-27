@@ -271,7 +271,7 @@ button,
     transition: all 0.3s ease;
 }
 
-/* Style au survol */
+
 button:hover, 
 .details-btn:hover, 
 .add-to-cart-btn:hover, 
@@ -291,7 +291,7 @@ button:hover,
     right: 15px;
 }
 
-/* Style spécifique pour les boutons dans les cartes produits */
+/* Style  boutons  cartes produits */
 .product-card button {
     width: 100%;
     margin-top: 10px;

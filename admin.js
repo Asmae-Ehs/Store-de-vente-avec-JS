@@ -1,6 +1,6 @@
 
 // Configuration
-const ADMIN_PASSWORD = "EdelGlow123"; // À changer en production
+const ADMIN_PASSWORD = "EdelGlow123"; 
 
 // Éléments DOM
 const authSection = document.getElementById('auth-section');
