@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdelGlow</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section class="header-section">
+        <div class="container">
+            <header class="navbar">  <!--navbar= navigation bar-->
+                <div class="logo">
+                    <img src="images/logo1 (2).png" alt="logo">
+                    
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#accueil">Acceuil</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li id="cart-icon">
+                            🛒 <span id="cart-count">0</span>
+                            <div id="cart-dropdown" class="hidden">
+                                <div id="cart-items"></div>
+                                <button id="checkout-btn">Valider le panier</button>
+                            </div>
+                        </li>
+                        <div class="filters">
+                            <select id="category-filter">
+                                <option value="all">Toutes catégories</option>
+                                <!-- Les options seront ajoutées en JS -->
+                            </select>
+                                <!-- Nouveau filtre par prix -->
+                            <select id="price-filter">
+                                <option value="all">Tous les prix</option>
+                                <!-- Les options de prix seront générées en JS -->
+                            </select>
+                            
+                        </div>
+                        <div class="search-bar">
+                            <input type="text" id="search-input" placeholder="Rechercher un produit...">
+                            <button id="search-btn">🔍</button>
+                        </div>
+                        
+                    </ul>
+
+                </nav>
+        
+            </header>
+    
+            <div class="row">
+                <div class="col-2">
+                    <h1>L'art de briller, chaque jour.</h1>
+                    <a href=>Explorer Maintenant &#8594;</a>
+                </div>
+            </div>
+        
+        </div>
+
+    
+    </section>
+    <!-- Section Produits -->
+    <section class="products">
+        <div class="product-container" id="product-list">
+            <!-- Les produits apparaîtront ici via JavaScript -->
+        </div>
+    </section>
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <h2 id="modal-title"></h2>
+            <p id="modal-price"></p>
+            <p id="modal-description"></p>
+            <button id="modal-add-to-cart">Ajouter au panier</button>
+        </div>
+    </div>
+
+    <!-- Placez cette balise juste avant </body> -->
+
+    
+    <script type="module" src="script.js"></script>
+    <section id="contact" style="min-height: 300px; padding: 40px;background: radial-gradient(#fff, rgb(235, 217, 224));">
+        <h2>Contactez-nous</h2>
+        <p>Email : contact@edelglow.com</p>
+    </section>
+    
+    
+</body>
+</html>
