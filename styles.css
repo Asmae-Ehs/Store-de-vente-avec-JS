@@ -115,7 +115,7 @@ col-2 p{
     object-fit: cover;
 }
 .products {
-    background: radial-gradient(#fff, rgb(235, 217, 224));
+    background: radial-gradient(#ffffff, rgb(235, 217, 224));
     padding: 50px 0;  
     margin-top: -20px; 
     

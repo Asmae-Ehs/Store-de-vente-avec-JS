@@ -129,7 +129,6 @@ window.editProduct = function(id) {
         document.getElementById('productImage').value = product.image;
         document.getElementById('productDescription').value = product.description;
         
-        // Scroll vers le formulaire
         document.querySelector('.product-form').scrollIntoView({
             behavior: 'smooth'
         });

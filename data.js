@@ -164,7 +164,7 @@ let products = [
 ];
 export { products };  
 
-// Fonction pour ajouter dynamiquement des produits
+// Fonction pour ajouter dynamiquement des produits:
 export function addNewProduct(newProduct) {
     products.push(newProduct);
   }
