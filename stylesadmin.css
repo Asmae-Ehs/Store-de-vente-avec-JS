@@ -10,7 +10,7 @@ body {
     background-color: var(--secondary-color);
 }
 
-/* Authentification */
+
 .auth-container {
     display: flex;
     justify-content: center;
@@ -29,7 +29,7 @@ body {
     text-align: center;
 }
 
-/* Interface Admin */
+
 #admin-section {
     display: none;
     padding: 20px;

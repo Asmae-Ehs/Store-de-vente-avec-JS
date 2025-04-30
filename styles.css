@@ -82,7 +82,7 @@ col-2 p{
     background:radial-gradient(#fff,rgb(235, 217, 224))
 
 }
-/*style de la section categories*/
+
 .categories{
     margin :70px 0;
 }
@@ -116,13 +116,13 @@ col-2 p{
 }
 .products {
     background: radial-gradient(#fff, rgb(235, 217, 224));
-    padding: 50px 0;  /* Ajoute un espacement interne */
-    margin-top: -20px; /* Pour coller au header */
+    padding: 50px 0;  
+    margin-top: -20px; 
     
 }
 .search-bar {
     display: flex;
-    margin-left: auto; /* Aligne à droite */
+    margin-left: auto; 
     padding: 0 20px;
 }
 
@@ -141,7 +141,7 @@ col-2 p{
     border-radius: 0 20px 20px 0;
     cursor: pointer;
 }
-/* Style du panier */
+
 #cart-icon {
     position: relative;
     cursor: pointer;
@@ -185,7 +185,7 @@ col-2 p{
     border: none;
     margin-top: 15px;
 }
-/* Notification */
+
 .cart-notification {
     position: fixed;
     bottom: 20px;
@@ -202,12 +202,12 @@ col-2 p{
     10%, 90% { opacity: 1; }
 }
 
-/* Dropdown panier */
+
 #cart-dropdown.hidden {
     display: none;
 }
 
-/* Styles pour la modal */
+
 .modal {
     display: none;
     position: fixed;
@@ -254,7 +254,7 @@ col-2 p{
     background: white;
     color: #c4736c;
 }
-/* Style de base pour tous les boutons */
+
 button, 
 .details-btn, 
 .add-to-cart-btn, 
@@ -281,7 +281,7 @@ button:hover,
     transform: translateY(-2px);
 }
 
-/* Style pour le bouton de fermeture de la modal */
+
 .close-modal {
     background: none;
     color: #333;
@@ -291,13 +291,13 @@ button:hover,
     right: 15px;
 }
 
-/* Style  boutons  cartes produits */
+
 .product-card button {
     width: 100%;
     margin-top: 10px;
 }
 
-/* Style pour le bouton de validation */
+
 #checkout-btn {
     background-color: #c4736c;
 }
@@ -310,5 +310,14 @@ button:hover,
     border-radius: 20px;
     background: white;
     color: #c4736c;
-    margin-left: 10px; /* Espace entre les deux filtres */
+    margin-left: 10px; 
+}
+
+
+#admin-link {
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+#admin-link:active {
+    transform: scale(0.95); 
 }

@@ -6,11 +6,13 @@
     <title>EdelGlow</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <section class="header-section">
         <div class="container">
-            <header class="navbar">  <!--navbar= navigation bar-->
+            <header class="navbar">  
                 <div class="logo">
                     <img src="images/logo1 (2).png" alt="logo">
                     
@@ -19,6 +21,11 @@
                     <ul>
                         <li><a href="#accueil">Acceuil</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li>
+                            <a href="admin.html#force-auth" id="admin-link">
+                                <i class="fas fa-lock"></i> Admin
+                            </a>
+                        </li>
                         <li id="cart-icon">
                             🛒 <span id="cart-count">0</span>
                             <div id="cart-dropdown" class="hidden">
@@ -85,7 +92,13 @@
         <h2>Contactez-nous</h2>
         <p>Email : contact@edelglow.com</p>
     </section>
-    
+    <script>
+        document.getElementById('admin-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('adminAuth');
+            window.location.href = 'admin.html?auth=1';
+        });
+    </script>
     
 </body>
 </html>

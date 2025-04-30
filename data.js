@@ -1,5 +1,5 @@
 // Tableau des produits avec catégories
-const products = [
+let products = [
     {
         id: 1,
         name: "Bague Étoilée",
@@ -117,7 +117,7 @@ const products = [
         id: 15,
         name: "Vagues Océanes",
         price: 99,
-        category: "bracelets",
+        category: "Bracelets",
         image: "images/Vagues Océanes.jpg",
         description: "Bracelet vagues en argent"
     },
@@ -163,3 +163,8 @@ const products = [
     }
 ];
 export { products };  
+
+// Fonction pour ajouter dynamiquement des produits
+export function addNewProduct(newProduct) {
+    products.push(newProduct);
+  }

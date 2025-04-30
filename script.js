@@ -34,40 +34,51 @@ function searchProducts() {
 }
 
 // 4) Gestion du panier 
-function addToCart(product) {//Ajoute un produit au tableau cart.
-    cart.push(product);// Ajoute le product à la fin du tableau cart.
-    updateCartUI();//Appelle la fonction updateCartUI() pour actualiser l'affichage du panier.
+function addToCart(product) {
+    cart.push(product);
+    updateCartDropdown();
+    
+     
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.textContent = `${product.name} ajouté au panier`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 2000);
 }
 
-function updateCartUI() {// Affiche le nombre d'articles dans le panier.
-    const countElement = document.getElementById('cart-count');//Cherche dans le HTML un élément avec l'ID cart-count
+
+function updateCartUI() {
+    const countElement = document.getElementById('cart-count');
     if (countElement) countElement.textContent = cart.length;
 }
 
 // 5) Initialisation
-window.addEventListener('DOMContentLoaded', () => {// Pour éviter d'exécuter du JS avant que les éléments HTML existent.
+window.addEventListener('DOMContentLoaded', () => {
     // Affiche tous les produits au départ
-    populateCategoryFilter(); // <-- // Appelle cette fonction au chargement de la page
-    populatePriceRanges();    // Pour les prix (nouveau)
+    populateCategoryFilter(); 
+    populatePriceRanges();   
     showProducts();
     
     // Écouteurs pour la recherche 
-    document.getElementById('search-btn').addEventListener('click', searchProducts);//Quand on clique sur le bouton (click),ghn3mlo l appelle n searchProducts().
-    document.getElementById('search-input').addEventListener('keyup', (e) => {//keyup : Se déclenche quand une touche est relâchée.
-        if (e.key === 'Enter') searchProducts();//Vérifie si c'est la touche Entrée,Si oui, on lance la recherche.
+    document.getElementById('search-btn').addEventListener('click', searchProducts);
+    document.getElementById('search-input').addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') searchProducts();
     });
     
     // Gestion du panier via délégation d'événements
     document.getElementById('product-list').addEventListener('click', (e) => {
-        if (e.target.classList.contains('add-to-cart-btn')) {//e.target : L'élément cliqué (le bouton "Ajouter"). Vérifie si c'est bien un bouton d'ajout.
-            const productId = parseInt(e.target.closest('.product-card').dataset.id);// Récupère l'ID du produit (stocké dans data-id en HTML).
-            const product = products.find(p => p.id === productId);//Cherche le produit correspondant dans votre tableau.
-            if (product) addToCart(product);//Ajoute le produit trouvé au panier.
+        if (e.target.classList.contains('add-to-cart-btn')) {
+            const productId = parseInt(e.target.closest('.product-card').dataset.id);
+            const product = products.find(p => p.id === productId);
+            if (product) addToCart(product);
         }
     });
     // Gestion de la modal
-    document.querySelector('.close-modal').addEventListener('click', closeModal);// Fermeture par la croix (×)
-    window.addEventListener('click', (e) => {//Fermeture en cliquant à l'extérieur
+    document.querySelector('.close-modal').addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
         if (e.target === document.getElementById('product-modal')) {
             closeModal();
         }
@@ -101,21 +112,21 @@ function showProductDetails(product) {
 
     // Bouton Ajouter au panier
     document.getElementById('modal-add-to-cart').onclick = () => {
-        addToCart(product);//Ajoute le produit au panier 
-        modal.style.display = 'none';//Ferme la fenêtre
+        addToCart(product);
+        modal.style.display = 'none';
     };
 }
 
 // 7) Fonction pour fermer la modal
 function closeModal() {
-    document.getElementById('product-modal').style.display = 'none';// none = aucun affichage
+    document.getElementById('product-modal').style.display = 'none';
 }
 
 
-document.getElementById('product-list').addEventListener('click', (e) => {//Sélection de la zone des produits et  Écouteur d'événement pour les clics
-    if (e.target.classList.contains('details-btn')) {//e.target : L'élément précis qui a été cliqué,Vérifie si l'élément cliqué a la classe details-btn
-        const productId = parseInt(e.target.closest('.product-card').dataset.id);//parseInt() : Convertit en nombre (car dataset.id retourne une chaîne)etRécupérer l'ID du produit
-        const product = products.find(p => p.id === productId);//Trouver le produit correspondant
+document.getElementById('product-list').addEventListener('click', (e) => {
+    if (e.target.classList.contains('details-btn')) {
+        const productId = parseInt(e.target.closest('.product-card').dataset.id);
+        const product = products.find(p => p.id === productId);
         showProductDetails(product);
     }
     
@@ -123,17 +134,17 @@ document.getElementById('product-list').addEventListener('click', (e) => {//Sél
 
 
 //fonction pour filtrer
-function filterProducts() {//Récupérer les valeurs des filtres
+function filterProducts() {
     const selectedCategory = document.getElementById('category-filter').value;
     const selectedPrice = document.getElementById('price-filter').value;
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     
-    let filteredProducts = products;//Initialiser les produits filtrés
+    let filteredProducts = products;
     
-    // Filtre par cat
+   
     if (selectedCategory !== 'all') {
         filteredProducts = filteredProducts.filter(
-            product => product.category.toLowerCase() === selectedCategory.toLowerCase()//.toLowerCase() : Pour ignorer la casse
+            product => product.category.toLowerCase() === selectedCategory.toLowerCase()
         );
     }
     
@@ -153,7 +164,7 @@ function filterProducts() {//Récupérer les valeurs des filtres
         );
     }
     
-    showProducts(filteredProducts);//Affichage final
+    showProducts(filteredProducts);
 }
 
 
@@ -168,14 +179,36 @@ function toggleCart() {
 //actualiser contenu du panier
 function updateCartDropdown() {
     const container = document.getElementById('cart-items');
-    container.innerHTML = cart.length === 0
-        ? '<p>Panier vide</p>'
-        : cart.map(item => `
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                <span>${item.name}</span>
-                <span>${item.price} DH</span>
-            </div>
-        `).join('');
+    if (cart.length === 0) {
+        container.innerHTML = '<p>Panier vide</p>';
+        return;
+    }
+
+    // Regrouper les produits par ID
+    const groupedCart = {};
+    cart.forEach(item => {
+        if (!groupedCart[item.id]) {
+            groupedCart[item.id] = {
+                ...item,
+                quantity: 1,
+                total: item.price
+            };
+        } else {
+            groupedCart[item.id].quantity++;
+            groupedCart[item.id].total += item.price;
+        }
+    });
+
+    // Générer l'affichage
+    container.innerHTML = Object.values(groupedCart).map(item => `
+        <div class="cart-item">
+            <span>${item.name} × ${item.quantity}</span>
+            <span>${item.total.toFixed(2)} DH</span>
+        </div>
+    `).join('');
+
+    // Mettre à jour le nombre total d'articles
+    document.getElementById('cart-count').textContent = cart.length;
 }
 
 // Valider la commande
@@ -186,23 +219,23 @@ function checkout() {
     document.getElementById('cart-count').textContent = '0';
     document.getElementById('cart-dropdown').style.display = 'none';
 }
-// Activation des boutons de navigation
+// boutons de navigation
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault();
         
-        // Récupère la cible du lien (accueil ou contact)
+        
         const target = this.getAttribute('href').toLowerCase();
         
         if (target === '#accueil') {
-            // Scroll n Accueil
+            
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         } 
         else if (target === '#contact') {
-            // Scroll n Contact 
+            
             const contactSection = document.getElementById('contact');
             if (contactSection) {
                 contactSection.scrollIntoView({
@@ -226,7 +259,7 @@ function populateCategoryFilter() {
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
-        option.textContent = category.charAt(0).toUpperCase() + category.slice(1); // Majuscule
+        option.textContent = category.charAt(0).toUpperCase() + category.slice(1); 
         categoryFilter.appendChild(option);
     });
 }
@@ -235,7 +268,7 @@ function populateCategoryFilter() {
 function populatePriceRanges() {
     const priceFilter = document.getElementById('price-filter');
     const prices = products.map(product => product.price);
-    const maxPrice = Math.max(...prices); // Prix maximum dans ton catalogue
+    const maxPrice = Math.max(...prices); 
 
     // Crée des tranches de 100DH jusqu'au prix max
     for (let i = 0; i < maxPrice; i += 100) {
@@ -245,7 +278,7 @@ function populatePriceRanges() {
         priceFilter.appendChild(option);
     }
 
-    // Option finale pour "Plus de X DH" (arrondi à la centaine supérieure)
+    // Option finale pour "Plus de X DH" 
     const lastThreshold = Math.ceil(maxPrice / 100) * 100;
     const lastOption = document.createElement('option');
     lastOption.value = `${lastThreshold}+`;
