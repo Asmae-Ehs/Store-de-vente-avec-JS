@@ -278,7 +278,7 @@ function populatePriceRanges() {
         priceFilter.appendChild(option);
     }
 
-    // Option finale pour "Plus de X DH" 
+    // Option finale :Plus de X DH
     const lastThreshold = Math.ceil(maxPrice / 100) * 100;
     const lastOption = document.createElement('option');
     lastOption.value = `${lastThreshold}+`;
